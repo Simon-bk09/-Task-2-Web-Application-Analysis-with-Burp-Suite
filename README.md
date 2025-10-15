@@ -1,11 +1,12 @@
 # Table of content
 * [Task 2 :Web Application Analysis with Burp Suite](#Task-2-:Web-Application-Analysis-with-Burp-Suite)
-* [Objective](#Objective)
-* [Tools used](#Tools-used)
-* [Installation process (https://portswigger.net/burp/communitydownload.)](#Installation-process (https://portswigger.net/burp/communitydownload.))
+* [Objective](#objective)
+* [Tools used](#tools-used)
+* [Installation process (https://portswigger.net/burp/communitydownload.)](#installation-process (https://portswigger.net/burp/communitydownload.))
+* 
   <h1 style="text-align:center;">Task 2 :Web Application Analysis with Burp Suite</h1>
 
-  # Objective:
+ # Objective:
  This assignment aims to provide hands-on experience with Burp Suite, enabling you to analyze and modify web requests to observe their impact and deepen your understanding of web security testing. Through practical exercises, you'll gain valuable skills in identifying and exploiting vulnerabilities in web applications.
 
  # Tools used :
