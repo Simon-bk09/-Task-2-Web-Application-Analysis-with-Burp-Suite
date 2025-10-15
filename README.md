@@ -2,9 +2,7 @@
 * [Task 2 :Web Application Analysis with Burp Suite](#Task-2-:Web-Application-Analysis-with-Burp-Suite)
 * [Objective](#Objective)
 * [Tools used](#Tools-used)
-* [Installation process](#Installation-process-(https://portswigger.net/burp/communitydownload.))
-  
-  
+* [Installation process (https://portswigger.net/burp/communitydownload.)](#Installation-process (https://portswigger.net/burp/communitydownload.))
   <h1 style="text-align:center;">Task 2 :Web Application Analysis with Burp Suite</h1>
 
   # Objective:
