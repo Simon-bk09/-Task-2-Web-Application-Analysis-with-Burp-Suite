@@ -1,9 +1,8 @@
 # Table of content
-* [Task 2 :Web Application Analysis with Burp Suite](#Task-2-:Web-Application-Analysis-with-Burp-Suite)
-* [Objective](#objective)
-* [Tools used](#tools-used)
-* [Installation process (https://portswigger.net/burp/communitydownload.)](#installation-process (https://portswigger.net/burp/communitydownload.))
-* 
+  * [Task 2 :Web Application Analysis with Burp Suite](#Task-2-:Web-Application-Analysis-with-Burp-Suite)
+  * [Objective](#objective)
+  * [Tools used](#tools-used)
+  * [Installation process (https://portswigger.net/burp/communitydownload.)](#installation-process (https://portswigger.net/burp/communitydownload.))
   <h1 style="text-align:center;">Task 2 :Web Application Analysis with Burp Suite</h1>
 
  # Objective:
