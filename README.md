@@ -49,6 +49,37 @@ Make sure you have Java 21 or later installed on your computer. For Windows, run
     
 <img width="1366" height="768" alt="Conformaing cert " src="https://github.com/user-attachments/assets/54159938-1eaf-4be7-b3d2-e65e29244219" />
 
+# Using BurpSuit Repeater tab for Cross-Site Scripting (XSS) vulnerability  
+A reflected cross-site scripting (XSS) vulnerability was identified in the search functionality of the `testphp.vulnweb.com` application, specifically in the `/search.php` endpoint. This POC demonstrates how Burp Suite can be used to intercept and modify the request to inject and execute arbitrary JavaScript code in the browser.
+
+## Step taken 
+1. Navigate to the Site:
+- Open http://testphp.vulnweb.com/ in your proxied browser.
+  
+  <img width="1366" height="768" alt="Target Website" src="https://github.com/user-attachments/assets/3bc5e808-31ea-4b47-a5cc-3ac97bc1346d" />
+
+2. Submit a Normal Search:
+- Enter "batman" in the search field and click "go". And intercepting in the proxy tab in Brupsuit.
+  <img width="1366" height="768" alt="Screenshot_2025-10-15_06_36_10" src="https://github.com/user-attachments/assets/2521eb5c-41ad-4b7f-850e-13965cff3262" />
+
+3. Intercept and sending to Repeater Tab:
+- Repeat the search but with intercept enabled. In Burp's Intercept tab and send to Repeater, 
+<img width="1366" height="768" alt="2" src="https://github.com/user-attachments/assets/aaf1d9fb-e813-4131-8dac-32c3b6844cda" />
+4. Checking the Input:
+- After sending to repearet tab checking the input in respond tab.
+<img width="1366" height="768" alt="3" src="https://github.com/user-attachments/assets/90c5a0dd-2c7a-471a-994e-9a49bdaa628f" />
+  
+5. Modifying the Request:
+- Modify the searchFor parameter to the XSS payload: `<script>alert('batman')</script>`.The modified request body becomes: `searchFor=%3Cscript%3Ealert(%27batman%27)%3C%2Fscript%3E&goButton=go`.
+<img width="1366" height="768" alt="5" src="https://github.com/user-attachments/assets/65333137-61d5-46d0-8c9c-5d3ed2061058" />
+
+6. Forward the Request:
+- Forward the modified request and switch to the browser. The response will reflect the payload, causing the browser to execute the script.
+7. Observe the Execution:
+- A JavaScript alert box pops up with the message "batman", confirming successful XSS execution.
+<img width="1366" height="768" alt="6" src="https://github.com/user-attachments/assets/54cb0680-5c39-44ec-a26b-8670dbcc45a6" />
+
+
 
 
 
