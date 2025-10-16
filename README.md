@@ -1,9 +1,4 @@
-# Table of content
-  * [Task 2 :Web Application Analysis with Burp Suite](#Task-2-:Web-Application-Analysis-with-Burp-Suite)
-  * [Objective](#objective)
-  * [Tools used](#tools-used)
-  * [Installation process (https://portswigger.net/burp/communitydownload.)](#installation-process (https://portswigger.net/burp/communitydownload.))
-  <h1 style="text-align:center;">Task 2 :Web Application Analysis with Burp Suite</h1>
+<h1 style="text-align:center;">Task 2 :Web Application Analysis with Burp Suite</h1>
 
  # Objective:
  This assignment aims to provide hands-on experience with Burp Suite, enabling you to analyze and modify web requests to observe their impact and deepen your understanding of web security testing. Through practical exercises, you'll gain valuable skills in identifying and exploiting vulnerabilities in web applications.
@@ -55,6 +50,7 @@ Make sure you have Java 21 or later installed on your computer. For Windows, run
 <img width="1366" height="768" alt="Conformaing cert " src="https://github.com/user-attachments/assets/54159938-1eaf-4be7-b3d2-e65e29244219" />
 
 # Using BurpSuit Repeater tab for Cross-Site Scripting (XSS) vulnerability  
+
 A reflected cross-site scripting (XSS) vulnerability was identified in the search functionality of the `testphp.vulnweb.com` application, specifically in the `/search.php` endpoint. This POC demonstrates how Burp Suite can be used to intercept and modify the request to inject and execute arbitrary JavaScript code in the browser.
 
 ## Step taken 
@@ -84,16 +80,110 @@ A reflected cross-site scripting (XSS) vulnerability was identified in the searc
 - A JavaScript alert box pops up with the message "batman", confirming successful XSS execution.
 <img width="1366" height="768" alt="6" src="https://github.com/user-attachments/assets/54cb0680-5c39-44ec-a26b-8670dbcc45a6" />
 
+# Using Burpsuit intruder tab for Brute Force
+## Sinpe Attack
+
+ Burp Suite's Intruder tool in Sniper mode was used to target the pass parameter while keeping the uname fixed as "test". A simple list of common passwords was tested, successfully       identifying the correct password "test" based on response differences (e.g., HTTP status code changing from 302 to 200 upon success).
+
+## Step taken
+1. Navigate to the Site:
+   - Open `http://testphp.vulnweb.com/` and attempt a login via the "Your profile", which us a a login form (intercepted as POST to /userinfo.php)
+     
+2. Summit a paramater:
+   - In `http://testphp.vulnweb.com/` summit a simple paramater in username and password and intercept in Burpsuit.
+     
+3. Send to Intruder:
+   - Right-click the request in the Proxy history and send it to Intruder.
+     
+4. Configure Positions:
+   - In the Positions tab, set attack type to "Sniper Attack, Battering Ram Attack, Pitchfork Attack, or Cluster Boom attack ". Clear all positions and mark only the pass value with `§` delimiters.
+     
+5. Configure Payloads:
+   - In the Payloads tab, select "Simple list" and load a list of passwords (e.g., from a wordlist file or manually add entries like "password", "123456", "test").
+   - Add second payload as needed in other type of attack.
+     
+6. Start the Attack:
+   - Launch the attack and observe results. Look for anomalies like status code changes (302 for failure, 200 for success) or response length differences.
+     
+7. Verify Success:
+   -  A successful login (e.g., with `pass=123456`) will return a 200 status and display user information in the response.
+
+# Proof of Concept of Snipe attack Screenshots
+1. Intruder Payloads Configuration: Sniper attack setup with password list.
+<img width="1366" height="768" alt="1" src="https://github.com/user-attachments/assets/39532fdb-aa7e-45ec-90c2-7d1a8d8071d2" />
+
+2. Intruder Attack Results: Successful payload ("test") with status 200.
+<img width="1366" height="768" alt="2" src="https://github.com/user-attachments/assets/05235ee8-48ff-4404-ab06-bf6197edb088" />
+
+3. Successful Login Page: Browser view after brute force success.
+   <img width="1366" height="768" alt="3" src="https://github.com/user-attachments/assets/7bc98f67-7fc3-4fcb-84eb-ad808585b01d" />
+
+# Proof of Concept of Battering Ram Attack: 
+
+1. Intruder Payloads Configuration: Battering Ram attack setup with password list.
+<img width="1366" height="768" alt="1" src="https://github.com/user-attachments/assets/c044dee5-9171-46b9-af7d-fcc9f58050c9" />
+
+2. Intruder Attack Results: Successful payload ("test") with status 200.
+<img width="1366" height="768" alt="2" src="https://github.com/user-attachments/assets/f870de2d-2b15-4f9b-8ee0-37dc8b6269ed" />
+
+3. Successful Login Page: Browser view after brute force success.
+ <img width="1366" height="768" alt="3" src="https://github.com/user-attachments/assets/7bc98f67-7fc3-4fcb-84eb-ad808585b01d" />
+
+# Proof of Concept of Pitchfork Attack:
+
+1. Intruder Payloads Configuration: Pitchfork attack setup with password list.
+<img width="1366" height="768" alt="1" src="https://github.com/user-attachments/assets/fa4c7174-f35e-417a-9baf-88df08ddc104" />
+
+2. Intruder Attack Results: Successful payload ("test") with status 200.
+<img width="1366" height="768" alt="2" src="https://github.com/user-attachments/assets/90690f02-2f44-40ac-bbab-8633f7e1d00a" />
+
+3. Successful Login Page: Browser view after brute force success
+<img width="1366" height="768" alt="3" src="https://github.com/user-attachments/assets/ce4cf011-9a55-46ed-b8ef-9e534516f677" />
+
+# Proof of Concept of Cluster Boom Attack:
+
+1. Intruder Payloads Configuration: Pitchfork attack setup with password list.
+<img width="1366" height="768" alt="1" src="https://github.com/user-attachments/assets/17cffc23-9da4-4484-835b-98e30ad02338" />
+   
+2. Intruder Attack Results: Successful payload ("test") with status 200.
+<img width="1366" height="768" alt="2" src="https://github.com/user-attachments/assets/3266950d-591b-4dfd-bd21-deaa8c5c88d5" />
+
+3. Successful Login Page: Browser view after brute force success
+<img width="1366" height="768" alt="3" src="https://github.com/user-attachments/assets/ce4cf011-9a55-46ed-b8ef-9e534516f677" />
+
+# Using Comparer tab to analysis Brutforce attack
+
+1. Analyze Results and Send to Comperer Tab: 
+   - In the Intruder results tab, select a failed response (e.g., pass=wrong, 302 status) and a successful response (e.g., pass=test, 200 status) and sent it to Compere tab.
+<img width="1366" height="768" alt="Screenshot_2025-10-16_04_01_30" src="https://github.com/user-attachments/assets/556688d8-bf43-4edc-b930-99c2a5ef6d9d" />
 
 
+2. Word compare:
+  - After sending to comparer tab click `words` and analysis the result.
+<img width="1366" height="768" alt="1" src="https://github.com/user-attachments/assets/2eebd4a2-3ce4-464b-ab19-e615f0bd5f42" />
 
 
-
-
-
-
+3. Bytes compare:
+   - And also analyzing the result in `bytes` format.
+<img width="1366" height="768" alt="Bytes" src="https://github.com/user-attachments/assets/7477d657-229d-46f9-9937-9208c1318f19" />
 
 
 
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
