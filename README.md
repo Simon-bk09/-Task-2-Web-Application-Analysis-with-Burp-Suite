@@ -1,18 +1,40 @@
-<h1 style="text-align:center;">Task 2 :Web Application Analysis with Burp Suite</h1>
+<h1 style="color:red ; ">Task 2 :Web Application Analysis with Burp Suite</h1>
 
+| Summited By                     |  Summited to           |
+|:--------------------------------| :----------------------|
+| Name : SImol bk                 | Name : Niraj Adhikari  | 
+| Email : Simon.bk.088@gmail.com  | 
+
+
+
+# Table of Contents
+
+ - [Objective](#objective)
+ - [Tools Used](#tools-used)
+ - [What is Burp Suite?](#what-is-burp-suite)
+ - [Installation Process](#installation-process)
+ - [Configuring Burp Suite in Browser](#configuring-burp-suite-in-browser)
+ - [Using Burp Suite Repeater Tab for Cross-Site Scripting (XSS) Vulnerability](#using-burp-suite-repeater-tab-for-cross-site-scripting-xss-vulnerability)
+ - [Using Burp Suite Intruder Tab for Brute Force](#using-burp-suite-intruder-tab-for-brute-force)
+ - [Using Comparer Tab to Analyze Brute Force Attack](#using-comparer-tab-to-analyze-brute-force-attack)
+ - [Using Decoder Tab to Decode and Encode Values](#using-decoder-tab-to-decode-and-encode-values)
+ - [Using Sequencer in Burp Suite](#using-sequencer-in-burp-suite)
+ - [Conclusion](#conclusion)
+  
  # Objective:
  This assignment aims to provide hands-on experience with Burp Suite, enabling you to analyze and modify web requests to observe their impact and deepen your understanding of web security testing. Through practical exercises, you'll gain valuable skills in identifying and exploiting vulnerabilities in web applications.
 
  # Tools used :
  - Tool = Burp suit- Community addition
  - Environment = Kali Linux in (NAT Network Adapter)
- # What is Burp suit?
+   
+ # What is Burpsuite?
  BurpSuit is a platform which is developed by PortSwigger for web application security testing. This tool is widely by security researcher, pentester, ect.The tool helps identify vulnerabilities such as SQL injection, cross-site scripting (XSS), and other web-based security issues.
 
 ## Installation process (https://portswigger.net/burp/communitydownload.) 
 Make sure you have Java 21 or later installed on your computer. For Windows, run the .exe file and follow the simple setup wizard. On macOS, open the .dmg file and drag Burp Suite to your Applications folder. For Linux, make the .sh file executable and run it from the terminal. Once installed, launch Burp Suite, set your browser to use its proxy (usually 127.0.0.1:8080), and install the Burp CA certificate to handle HTTPS traffic.
 
-# Configuring BurpSuit in browser :
+# Configuring BurpSuite in browser :
 ## Step 1 : Lunching BurpSuit 
 1. Opening Brup suit in Kali linux.
 2. Selecting Next, then Start Burp to open the main interface.
@@ -81,9 +103,8 @@ A reflected cross-site scripting (XSS) vulnerability was identified in the searc
 <img width="1366" height="768" alt="6" src="https://github.com/user-attachments/assets/54cb0680-5c39-44ec-a26b-8670dbcc45a6" />
 
 # Using Burpsuit intruder tab for Brute Force
-## Sinpe Attack
 
- Burp Suite's Intruder tool in Sniper mode was used to target the pass parameter while keeping the uname fixed as "test". A simple list of common passwords was tested, successfully       identifying the correct password "test" based on response differences (e.g., HTTP status code changing from 302 to 200 upon success).
+ Burp Suite's Intruder tab was used to target the pass parameter while keeping the uname fixed as "test". A simple list of common passwords was tested, successfully identifying the correct password "test" based on response differences (e.g., HTTP status code changing from 302 to 200 upon success).
 
 ## Step taken
 1. Navigate to the Site:
@@ -166,6 +187,62 @@ A reflected cross-site scripting (XSS) vulnerability was identified in the searc
 3. Bytes compare:
    - And also analyzing the result in `bytes` format.
 <img width="1366" height="768" alt="Bytes" src="https://github.com/user-attachments/assets/7477d657-229d-46f9-9937-9208c1318f19" />
+
+# Using Decoder tab to Decode and encode the value : 
+
+The Decoder tab in Burp Suite is used to manually encode, decode, and hash data (e.g., Base64, Hex, MD5) to analyze and manipulate web application inputs/outputs, helping identify obfuscated content, test security vulnerabilities, or prepare payloads for penetration testing.
+
+## Step 1 :
+   - Sending encrypted value in decoder to analyze and encode the value.
+<img width="1364" height="656" alt="Base64_1" src="https://github.com/user-attachments/assets/ba9e38ef-8f7d-47b4-b4a6-b656eb042764" />
+     
+## Step 2 : 
+   - Analysing the result.
+<img width="1364" height="656" alt="Base64_2" src="https://github.com/user-attachments/assets/e05652d9-7ecf-4b88-85ae-24eeeaffb233" />
+
+## Step 3 :
+  - In right side of Decoder tab manually choosing the type to of encoding or decoding as the type of the value or using smart decode.
+  - In this case I have re-encodes by changing the value in `url format` 
+<img width="1364" height="656" alt="url_3" src="https://github.com/user-attachments/assets/d62fb612-b522-41ef-9e27-b3e3b689c7d7" />
+
+## Step 4 : 
+  - And at the last I have decoder the re-encoded to analyzethe result.
+<img width="1364" height="656" alt="url_4" src="https://github.com/user-attachments/assets/51bd4b3b-c57f-41d2-aeb4-9d614d628802" />
+
+# Using Sequencer in Burpsuite :
+The Sequencer tab in Burp Suite is used to analyze the randomness and predictability of session tokens or other critical data, helping to identify weak or insecure token generation processes that could be exploited in session hijacking or authentication attacks.
+
+## Step 1 : 
+   - Intercepting the log in request from `GinandJuice.Shop/login` in burpsuite to capture the `Cookie`.
+   - We see the `Cookie: AWSALB=WCzpnf72kTBOp+BwIbL4uPt5ohWN/i015oG15mKuVq7+TDfZRVXImRCANi5Pi6Fk2EUadGueneB668TR3h4IsfRMnovilKTn+PZn6X96ceLWoJbPKuMxfqYmGI6Q;` in our proxy tab.
+<img width="1366" height="768" alt="1" src="https://github.com/user-attachments/assets/416ca2d6-90e6-48c3-8054-07d28a2828ec" />
+
+## Step 2 : 
+   - After capturing the request I send it to the `Sequencer tab` and select `Cookie` in the sequencer.
+<img width="1366" height="768" alt="2" src="https://github.com/user-attachments/assets/0aac54bf-f404-4ae0-827f-951c4481d7c6" />
+
+## Step 3 :
+  - And I started live capture.
+<img width="1366" height="768" alt="3" src="https://github.com/user-attachments/assets/3348235e-cec8-418b-a424-db13c774071b" />
+
+## Step 4 :
+   - After the capture is complete I click on `analyze now` to analyze the report.
+   - As per OWASP Session id length Session identifiers must have at least 64 bits of entropy to prevent brute-force session guessing attacks. (https://owasp.org/www-community/vulnerabilities/Insufficient_Session-ID_Length)
+   - In this websit the length of session it is 674 bits which conclude that the site is not Vulnerable with brute-force session guessing attacks.
+<img width="1366" height="768" alt="4" src="https://github.com/user-attachments/assets/62db1894-1496-404a-8d29-fded69c11490" />
+<img width="1366" height="206" alt="4 1" src="https://github.com/user-attachments/assets/62335414-6359-45ba-accb-a00b23c2e536" />
+
+### Step 4.1 :
+    - Report for Character-level analysis.
+<img width="1366" height="768" alt="4 2" src="https://github.com/user-attachments/assets/d0782a46-69fc-459a-9407-53ae23affa0a" />
+
+### Step 4.2 :
+    - Report for Bit-Level analysis.
+ <img width="1366" height="768" alt="4 3" src="https://github.com/user-attachments/assets/b6e988c1-0ff3-4ccc-a17e-3cdfc48ae084" />
+
+# Conclusion
+This hands-on Burp Suite exercise on Kali Linux illuminated key web security testing techniques, successfully exploiting a reflected XSS vulnerability on testphp.vulnweb.com via the Repeater tab by injecting JavaScript payloads, and brute-forcing weak login credentials ("test") using Intruder's Sniper, Battering Ram, Pitchfork, and Cluster Bomb attacks, with Comparer revealing response differences like 302-to-200 status shifts. Decoder enabled efficient payload encoding/decoding for evasion testing, while Sequencer analysis of GinandJuice.Shop cookies confirmed robust 674-bit entropy, exceeding OWASP's 64-bit threshold against session guessing.
+
 
 
 
