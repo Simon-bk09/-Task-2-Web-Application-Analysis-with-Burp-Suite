@@ -3,14 +3,14 @@
 | Summited By                     |  Summited to           |
 |:--------------------------------| :----------------------|
 | Name : SImol bk                 | Name : Niraj Adhikari  | 
-| Email : Simon.bk.088@gmail.com  | 
+|  | 
 
 
 
 # Table of Contents
 
  - [Objective](#objective)
- - [Tools Used](#tools+used)
+ - [Tools Used](#tools-used)
  - [What is Burp Suite?](#what-is-burp-suite?)
  - [Installation Process](#installation-process)
  - [Configuring Burp Suite in Browser](#configuring-burp-suite-in-browser)
